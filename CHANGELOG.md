@@ -1,239 +1,152 @@
-# CHANGELOG
+# Changelog
 
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## v7.1.1 - 2026-07-01
+---
 
-### What's Changed
+## [7.1.1](https://github.com/schubergphilis-ep/terraform-aws-mcaf-account-baseline/compare/v7.1.0...v7.1.1) (2026-07-01)
 
-#### 🐛 Bug Fixes
 
-* fix: Skip EBS snapshot public access block resource when state is unblocked (#34) @mayur7436
+### 🐛 Fixes
 
-**Full Changelog**: https://github.com/schubergphilis/terraform-aws-mcaf-account-baseline/compare/v7.1.0...v7.1.1
+* Skip EBS snapshot public access block resource when state is unblocked ([#34](https://github.com/schubergphilis/terraform-aws-mcaf-account-baseline/pull/34)) ([24d1fbe](https://github.com/schubergphilis-ep/terraform-aws-mcaf-account-baseline/commit/24d1fbeb3255be2eaeaa535dd827b913637acc57))
 
-## v7.1.0 - 2025-12-22
+## [7.1.0](https://github.com/schubergphilis-ep/terraform-aws-mcaf-account-baseline/compare/v7.0.1...v7.1.0) (2025-12-22)
 
-### What's Changed
 
-#### 🚀 Features
+### 🚀 Features
 
-* feat: Allow for disabling of EBS Block Public Access settings when utilizing AWS Declarative Policies at the Organization level.  (#32 ) @antonsmit-sbp
+* require unmanaged ebs BPA with declarative policies ([#32](https://github.com/schubergphilis/terraform-aws-mcaf-account-baseline/pull/32)) ([dd842ca](https://github.com/schubergphilis-ep/terraform-aws-mcaf-account-baseline/commit/dd842ca6eb1a493cbda40d3cce850e9ce8a8df6b))
 
-**Full Changelog**: https://github.com/schubergphilis/terraform-aws-mcaf-account-baseline/compare/v7.0.1...v7.1.0
+## [7.0.1](https://github.com/schubergphilis-ep/terraform-aws-mcaf-account-baseline/compare/v7.0.0...v7.0.1) (2025-10-31)
 
-## v7.0.1 - 2025-10-31
 
-### What's Changed
+### 🐛 Fixes
 
-#### 🐛 Bug Fixes
+* bug: solve known after apply issue with the aws_ebs_default_kms_key resource ([#30](https://github.com/schubergphilis/terraform-aws-mcaf-account-baseline/pull/30)) ([535a6cd](https://github.com/schubergphilis-ep/terraform-aws-mcaf-account-baseline/commit/535a6cdb5c0664d04f8bd58a311f05729184b1a3))
 
-* bug: solve known after apply issue with the aws_ebs_default_kms_key resource (#30) @marwinbaumannsbp
+## [7.0.0](https://github.com/schubergphilis-ep/terraform-aws-mcaf-account-baseline/compare/v6.1.0...v7.0.0) (2025-10-31)
 
-**Full Changelog**: https://github.com/schubergphilis/terraform-aws-mcaf-account-baseline/compare/v7.0.0...v7.0.1
 
-## v7.0.0 - 2025-10-31
+### ⚠ BREAKING CHANGES
 
-### What's Changed
+* switch to per-region KMS keys to enable multi-region EBS default encryption and optionally ssm automation log group encryption ([#29](https://github.com/schubergphilis/terraform-aws-mcaf-account-baseline/pull/29))
 
-#### 🚀 Features
+### 🚀 Features
 
-* feat!: switch to per-region KMS keys to enable multi-region EBS default encryption and optionally ssm automation log group encryption (#29) @marwinbaumannsbp
+* switch to per-region KMS keys to enable multi-region EBS default encryption and optionally ssm automation log group encryption ([#29](https://github.com/schubergphilis/terraform-aws-mcaf-account-baseline/pull/29)) ([a4ab430](https://github.com/schubergphilis-ep/terraform-aws-mcaf-account-baseline/commit/a4ab4309407fb6785e0ad88956f8d8e4c8ec03b1))
 
-**Full Changelog**: https://github.com/schubergphilis/terraform-aws-mcaf-account-baseline/compare/v6.1.0...v7.0.0
+## [6.1.0](https://github.com/schubergphilis-ep/terraform-aws-mcaf-account-baseline/compare/v6.0.0...v6.1.0) (2025-10-28)
 
-## v6.1.0 - 2025-10-28
 
-### What's Changed
+### 🚀 Features
 
-#### 🚀 Features
+* Push SSM automation logging to cloudwatch logs by default to solve Security Hub SSM.6 finding. ([#28](https://github.com/schubergphilis/terraform-aws-mcaf-account-baseline/pull/28)) ([60807dd](https://github.com/schubergphilis-ep/terraform-aws-mcaf-account-baseline/commit/60807dddc2130c1eebd68d03d13be06e8f261f0d))
 
-* feat: Push SSM automation logging to cloudwatch logs by default to solve Security Hub SSM.6 finding. (#28) @marwinbaumannsbp
+## [6.0.0](https://github.com/schubergphilis-ep/terraform-aws-mcaf-account-baseline/compare/v5.0.1...v6.0.0) (2025-10-28)
 
-**Full Changelog**: https://github.com/schubergphilis/terraform-aws-mcaf-account-baseline/compare/v6.0.0...v6.1.0
 
-## v6.0.0 - 2025-10-28
+### ⚠ BREAKING CHANGES
 
-### What's Changed
+* align variable naming with mcaf-landing-zone and solve deprecation warnings ([#27](https://github.com/schubergphilis/terraform-aws-mcaf-account-baseline/pull/27))
 
-#### 🚀 Features
+### 🚀 Features
 
-* feat!: align variable naming with mcaf-landing-zone and solve deprecation warnings (#27) @marwinbaumannsbp
+* align variable naming with mcaf-landing-zone and solve deprecation warnings ([#27](https://github.com/schubergphilis/terraform-aws-mcaf-account-baseline/pull/27)) ([825c8e3](https://github.com/schubergphilis-ep/terraform-aws-mcaf-account-baseline/commit/825c8e34821a4e9793593eaa5ad0b816e49ae987))
 
-**Full Changelog**: https://github.com/schubergphilis/terraform-aws-mcaf-account-baseline/compare/v5.0.1...v6.0.0
+## [5.0.1](https://github.com/schubergphilis-ep/terraform-aws-mcaf-account-baseline/compare/v5.0.0...v5.0.1) (2025-10-20)
 
-## v5.0.1 - 2025-10-20
 
-### What's Changed
+### 🐛 Fixes
 
-#### 🐛 Bug Fixes
+* ensure regions to baseline is an distinct list of values ([#26](https://github.com/schubergphilis/terraform-aws-mcaf-account-baseline/pull/26)) ([8f6f281](https://github.com/schubergphilis-ep/terraform-aws-mcaf-account-baseline/commit/8f6f2818b4f8107855fc15ad377ed299b796d7c7))
 
-* fix: ensure regions to baseline is an distinct list of values (#26) @marwinbaumannsbp
+## [5.0.0](https://github.com/schubergphilis-ep/terraform-aws-mcaf-account-baseline/compare/v4.0.0...v5.0.0) (2025-08-12)
 
-**Full Changelog**: https://github.com/schubergphilis/terraform-aws-mcaf-account-baseline/compare/v5.0.0...v5.0.1
 
-## v5.0.0 - 2025-08-12
+### 🚀 Features
 
-### What's Changed
+* breaking: multi region support ([#25](https://github.com/schubergphilis/terraform-aws-mcaf-account-baseline/pull/25)) ([a4f23e7](https://github.com/schubergphilis-ep/terraform-aws-mcaf-account-baseline/commit/a4f23e76c9820305b0d90c04d0d2d9e4e2939770))
 
-#### 🚀 Features
+## [4.0.0](https://github.com/schubergphilis-ep/terraform-aws-mcaf-account-baseline/compare/v3.0.0...v4.0.0) (2025-06-20)
 
-* breaking: multi region support (#25) @carlovoSBP
 
-**Full Changelog**: https://github.com/schubergphilis/terraform-aws-mcaf-account-baseline/compare/v4.0.0...v5.0.0
+### 🚀 Features
 
-## v4.0.0 - 2025-06-20
+* breaking: add enable_additional_eu_regions variable ([#23](https://github.com/schubergphilis/terraform-aws-mcaf-account-baseline/pull/23)) ([a151b12](https://github.com/schubergphilis-ep/terraform-aws-mcaf-account-baseline/commit/a151b123db907a8e31f448f80c2a13ce455d64b9))
 
-### What's Changed
+## [3.0.0](https://github.com/schubergphilis-ep/terraform-aws-mcaf-account-baseline/compare/v2.0.1...v3.0.0) (2025-05-21)
 
-#### 🚀 Features
 
-* breaking: add enable_additional_eu_regions variable (#23) @marwinbaumannsbp
+### 🚀 Features
 
-**Full Changelog**: https://github.com/schubergphilis/terraform-aws-mcaf-account-baseline/compare/v3.0.0...v4.0.0
+* breaking: block public EC2 artifacts shares by default ([#22](https://github.com/schubergphilis/terraform-aws-mcaf-account-baseline/pull/22)) ([f49ad28](https://github.com/schubergphilis-ep/terraform-aws-mcaf-account-baseline/commit/f49ad28cc7348f40b3d4552573c91db5b010a65f))
 
-## v3.0.0 - 2025-05-21
+## [2.0.1](https://github.com/schubergphilis-ep/terraform-aws-mcaf-account-baseline/compare/v2.0.0...v2.0.1) (2025-02-19)
 
-### What's Changed
+## [2.0.0](https://github.com/schubergphilis-ep/terraform-aws-mcaf-account-baseline/compare/v1.1.0...v2.0.0) (2025-01-16)
 
-#### 🚀 Features
 
-* breaking: block public EC2 artifacts shares by default (#22) @carlovoSBP
+### 🚀 Features
 
-#### 📖 Documentation
+* breaking: remove aws_security_hub_standards_arns to support centralized security hub configuration ([#19](https://github.com/schubergphilis/terraform-aws-mcaf-account-baseline/pull/19)) ([27058ad](https://github.com/schubergphilis-ep/terraform-aws-mcaf-account-baseline/commit/27058ad459d33af7da8f2c38605319fca5eae37d))
 
-* docs: improve upgrading guide (#21) @marwinbaumannsbp
+## [1.1.0](https://github.com/schubergphilis-ep/terraform-aws-mcaf-account-baseline/compare/v1.0.1...v1.1.0) (2025-01-14)
 
-**Full Changelog**: https://github.com/schubergphilis/terraform-aws-mcaf-account-baseline/compare/v2.0.1...v3.0.0
 
-## v2.0.1 - 2025-02-19
+### 🚀 Features
 
-### What's Changed
+* allow to configure the aws s3 account public access block ([#18](https://github.com/schubergphilis/terraform-aws-mcaf-account-baseline/pull/18)) ([3276bc1](https://github.com/schubergphilis-ep/terraform-aws-mcaf-account-baseline/commit/3276bc11a53d52cc30e9252446259bffdc77bd85))
 
-#### 📖 Documentation
+## [1.0.1](https://github.com/schubergphilis-ep/terraform-aws-mcaf-account-baseline/compare/v1.0.0...v1.0.1) (2024-01-02)
 
-* docs: improve UPGRADING documentation because you cannot use REMOVED block with a for_each loop (#20) @macampo
+## [1.0.0](https://github.com/schubergphilis-ep/terraform-aws-mcaf-account-baseline/compare/v0.3.1...v1.0.0) (2024-01-02)
 
-**Full Changelog**: https://github.com/schubergphilis/terraform-aws-mcaf-account-baseline/compare/v2.0.0...v2.0.1
 
-## v2.0.0 - 2025-01-16
+### 🚀 Features
 
-### What's Changed
+* breaking: Control Tower 3.0 support ([#15](https://github.com/schubergphilis/terraform-aws-mcaf-account-baseline/pull/15)) ([24a516c](https://github.com/schubergphilis-ep/terraform-aws-mcaf-account-baseline/commit/24a516c62dfcc8e7c93f901f1c5124be919b0cca))
 
-#### 🚀 Features
+## [0.3.1](https://github.com/schubergphilis-ep/terraform-aws-mcaf-account-baseline/compare/v0.3.0...v0.3.1) (2024-01-02)
 
-* breaking: remove aws_security_hub_standards_arns to support centralized security hub configuration (#19) @marwinbaumannsbp
 
-**Full Changelog**: https://github.com/schubergphilis/terraform-aws-mcaf-account-baseline/compare/v1.1.0...v2.0.0
+### 🐛 Fixes
 
-## v1.1.0 - 2025-01-14
+* bug: modify service quotas manager role name ([#16](https://github.com/schubergphilis/terraform-aws-mcaf-account-baseline/pull/16)) ([b745859](https://github.com/schubergphilis-ep/terraform-aws-mcaf-account-baseline/commit/b745859c30c5444e593e7fee27e445033ae4d354))
 
-### What's Changed
+## [0.3.0](https://github.com/schubergphilis-ep/terraform-aws-mcaf-account-baseline/compare/v0.2.1...v0.3.0) (2023-12-28)
 
-#### 🚀 Features
 
-* feature: allow to configure the aws s3 account public access block (#18) @marwinbaumannsbp
+### 🚀 Features
 
-**Full Changelog**: https://github.com/schubergphilis/terraform-aws-mcaf-account-baseline/compare/v1.0.1...v1.1.0
+* add role to integrate with the terraform-aws-mcaf-service-quotas-manager module + formatting ([#14](https://github.com/schubergphilis/terraform-aws-mcaf-account-baseline/pull/14)) ([c036e2d](https://github.com/schubergphilis-ep/terraform-aws-mcaf-account-baseline/commit/c036e2d2df6937903e4749538c64a699ae14c596))
 
-## v1.0.1 - 2024-01-02
+## [0.2.1](https://github.com/schubergphilis-ep/terraform-aws-mcaf-account-baseline/compare/v0.2.0...v0.2.1) (2023-12-05)
 
-### What's Changed
 
-#### 📖 Documentation
+### 🐛 Fixes
 
-* docs: improve service quotas manager documentation (#17) @marwinbaumannsbp
+* bug: Fix `aws_cloudwatch_log_group` resource ([#13](https://github.com/schubergphilis/terraform-aws-mcaf-account-baseline/pull/13)) ([348ccd6](https://github.com/schubergphilis-ep/terraform-aws-mcaf-account-baseline/commit/348ccd69015cdf464a752ffcbf24c03c30bdd70e))
 
-**Full Changelog**: https://github.com/schubergphilis/terraform-aws-mcaf-account-baseline/compare/v1.0.0...v1.0.1
+## [0.2.0](https://github.com/schubergphilis-ep/terraform-aws-mcaf-account-baseline/compare/v0.1.5...v0.2.0) (2023-07-25)
 
-## v1.0.0 - 2024-01-02
 
-### What's Changed
+### 🚀 Features
 
-#### 🚀 Features
+* control the AWS Security Hub standards in member accounts ([#12](https://github.com/schubergphilis/terraform-aws-mcaf-account-baseline/pull/12)) ([7ba5c65](https://github.com/schubergphilis-ep/terraform-aws-mcaf-account-baseline/commit/7ba5c65ca2442fe0e53881caa0c8032ed068904c))
 
-* breaking: Control Tower 3.0 support (#15) @stefanwb
+## [0.1.5](https://github.com/schubergphilis-ep/terraform-aws-mcaf-account-baseline/compare/v0.1.4...v0.1.5) (2023-05-01)
 
-**Full Changelog**: https://github.com/schubergphilis/terraform-aws-mcaf-account-baseline/compare/v0.3.1...v1.0.0
+## [0.1.4](https://github.com/schubergphilis-ep/terraform-aws-mcaf-account-baseline/compare/v0.1.3...v0.1.4) (2023-04-03)
 
-## v0.3.1 - 2024-01-02
+## [0.1.3](https://github.com/schubergphilis-ep/terraform-aws-mcaf-account-baseline/compare/v0.1.2...v0.1.3) (2021-09-09)
 
-### What's Changed
+## [0.1.2](https://github.com/schubergphilis-ep/terraform-aws-mcaf-account-baseline/compare/v0.1.1...v0.1.2) (2021-06-04)
 
-#### 🐛 Bug Fixes
-
-* bug: modify service quotas manager role name (#16) @marwinbaumannsbp
-
-**Full Changelog**: https://github.com/schubergphilis/terraform-aws-mcaf-account-baseline/compare/v0.3.0...v0.3.1
-
-## v0.3.0 - 2023-12-28
-
-### What's Changed
-
-#### 🚀 Features
-
-* feat: add role to integrate with the terraform-aws-mcaf-service-quotas-manager module + formatting (#14) @marwinbaumannsbp
-
-**Full Changelog**: https://github.com/schubergphilis/terraform-aws-mcaf-account-baseline/compare/v0.2.1...v0.3.0
-
-## v0.2.1 - 2023-12-05
-
-### What's Changed
-
-#### 🐛 Bug Fixes
-
-* bug: Fix `aws_cloudwatch_log_group` resource (#13) @shoekstra
-
-**Full Changelog**: https://github.com/schubergphilis/terraform-aws-mcaf-account-baseline/compare/v0.2.0...v0.2.1
-
-## v0.2.0 - 2023-07-25
-
-### What's Changed
-
-#### 🚀 Features
-
-- feature: control the AWS Security Hub standards in member accounts (#12) @marwinbaumannsbp
-
-**Full Changelog**: https://github.com/schubergphilis/terraform-aws-mcaf-account-baseline/compare/v0.1.5...v0.2.0
-
-## v0.1.5 - 2023-05-01
-
-### What's Changed
-
-- remove workflow (#9) @shoekstra
-
-#### 📖 Documentation
-
-- docs: Docs review 2022-04 (#11) @shoekstra
-- misc: set default value for `var.tags` (#10) @shoekstra
-
-**Full Changelog**: https://github.com/schubergphilis/terraform-aws-mcaf-account-baseline/compare/v0.1.4...v0.1.5
-
-## 0.1.4 (2022-10-02)
-
-BUG FIXES
-
-- Add count to `aws_cloudwatch_log_group.cloudtrail` data resource [#7](https://github.com/schubergphilis/terraform-aws-mcaf-account-baseline/pull/7))
-
-## 0.1.3 (2022-09-09)
-
-ENHANCEMENTS
-
-- Update IAM activity filter [#6](https://github.com/schubergphilis/terraform-aws-mcaf-account-baseline/pull/6))
-
-## 0.1.2 (2021-06-04)
-
-BUG FIXES
-
-- Fix `aws_ebs_default_kms_key` the count value depends on resource attributes that cannot be determined until apply [#5](https://github.com/schubergphilis/terraform-aws-mcaf-account-baseline/pull/5))
-
-## 0.1.1 (2021-05-21)
-
-- Add support for specifying the AWS KMS CMK to use to encrypt the EBS volumes ([#3](https://github.com/schubergphilis/terraform-aws-mcaf-account-baseline/pull/3))
-- Improve tagging of resources ([#2](https://github.com/schubergphilis/terraform-aws-mcaf-account-baseline/pull/2))
+## [0.1.1](https://github.com/schubergphilis-ep/terraform-aws-mcaf-account-baseline/compare/v0.1.0...v0.1.1) (2021-05-21)
 
 ## 0.1.0 (2021-02-26)
 
-- First version ([#1](https://github.com/schubergphilis/terraform-aws-mcaf-account-baseline/pull/1))
