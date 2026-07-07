@@ -61,7 +61,7 @@ This module can deploy the IAM role required by the [MCAF Service Quotas Manager
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_regional_resources_baseline"></a> [regional\_resources\_baseline](#module\_regional\_resources\_baseline) | ./modules/regional-resources-baseline | n/a |
-| <a name="module_service_quota_manager_role"></a> [service\_quota\_manager\_role](#module\_service\_quota\_manager\_role) | schubergphilis/mcaf-role/aws | ~> 0.5.3 |
+| <a name="module_service_quota_manager_role"></a> [service\_quota\_manager\_role](#module\_service\_quota\_manager\_role) | schubergphilis-ep/mcaf-role/aws | ~> 0.5.3 |
 
 ## Resources
 

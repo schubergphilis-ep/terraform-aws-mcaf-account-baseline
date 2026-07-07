@@ -63,7 +63,7 @@ module "regional_resources_baseline" {
 module "service_quota_manager_role" {
   count = var.service_quotas_manager_role != null ? 1 : 0
 
-  source  = "schubergphilis/mcaf-role/aws"
+  source  = "schubergphilis-ep/mcaf-role/aws"
   version = "~> 0.5.3"
 
   name                  = "ServiceQuotasManager"
