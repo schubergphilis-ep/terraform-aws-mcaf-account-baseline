@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [8.0.0](https://github.com/schubergphilis-ep/terraform-aws-mcaf-account-baseline/compare/v7.1.2...v8.0.0) (2026-08-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* set default for aws_ebs_snapshot_block_public_access_state as block-all-sharing ([#4](https://github.com/schubergphilis-ep/terraform-aws-mcaf-account-baseline/issues/4))
+
+### 🚀 Features
+
+* set default for aws_ebs_snapshot_block_public_access_state as block-all-sharing ([#4](https://github.com/schubergphilis-ep/terraform-aws-mcaf-account-baseline/issues/4)) ([70c9b87](https://github.com/schubergphilis-ep/terraform-aws-mcaf-account-baseline/commit/70c9b87d244956ab73492e017de68f2bb9402aba))
+
 ## [7.1.2](https://github.com/schubergphilis-ep/terraform-aws-mcaf-account-baseline/compare/v7.1.1...v7.1.2) (2026-07-07)
 
 
