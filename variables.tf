@@ -43,10 +43,16 @@ variable "aws_ebs_encryption_custom_key" {
   description = "Set to true and specify the `aws_kms_key_arns` to use in place of the AWS-managed default CMK"
 }
 
-variable "aws_kms_key_arns" {
-  type        = map(string)
-  default     = {}
-  description = "Map of region name => KMS Key ARN to use for EBS default encryption (and optionally other resources). Safely attaches/creates KMS resources only when a key for the region exists."
+variable "aws_ebs_snapshot_block_public_access_state" {
+  type        = string
+  default     = "block-all-sharing"
+  description = "Configure regionally the EBS snapshot public sharing policy, alternatives: `block-new-sharing` and `unblocked`. Not `null` but `unblocked` should be chosen to explicitly opt out of regional configuration when the setting is governed at the AWS Organization level via Declarative Policies."
+
+  validation {
+    condition = (var.aws_ebs_snapshot_block_public_access_state == null ||
+    contains(["unblocked", "block-new-sharing", "block-all-sharing"], var.aws_ebs_snapshot_block_public_access_state))
+    error_message = "Allowed values for aws_ebs_snapshot_block_public_access_state are: \"unblocked\", \"block-new-sharing\", \"block-all-sharing\"."
+  }
 }
 
 variable "aws_ec2_image_block_public_access_state" {
@@ -60,39 +66,10 @@ variable "aws_ec2_image_block_public_access_state" {
   }
 }
 
-variable "aws_ebs_snapshot_block_public_access_state" {
-  type        = string
-  default     = "block-all-sharing"
-  description = "Configure regionally the EBS snapshot public sharing policy, alternatives: `block-new-sharing` and `unblocked`. Not `null` but `unblocked` should be chosen to explicitly opt out of regional configuration when the setting is governed at the AWS Organization level via Declarative Policies."
-
-  validation {
-    condition = (var.aws_ebs_snapshot_block_public_access_state == null ||
-    contains(["unblocked", "block-new-sharing", "block-all-sharing"], var.aws_ebs_snapshot_block_public_access_state))
-    error_message = "Allowed values for aws_ebs_snapshot_block_public_access_state are: \"unblocked\", \"block-new-sharing\", \"block-all-sharing\"."
-  }
-}
-
-variable "aws_ssm_automation_logging_enabled" {
-  type        = bool
-  default     = true
-  description = "When true, enable SSM Automation customer-script logging to CloudWatch Logs in each baseline region."
-}
-
-variable "aws_ssm_automation_log_group_name" {
-  type        = string
-  default     = "/aws/ssm/automation"
-  description = "CloudWatch Logs log group name for SSM Automation."
-}
-
-variable "aws_ssm_documents_public_sharing_permission" {
-  type        = string
-  default     = "Disable"
-  description = "Configure the SSM documents public sharing policy, alternatives: `Enable`"
-
-  validation {
-    condition     = contains(["Disable", "Enable"], var.aws_ssm_documents_public_sharing_permission)
-    error_message = "Allowed values for aws_ssm_documents_public_sharing_permission are: \"Disable\", \"Enable\"."
-  }
+variable "aws_kms_key_arns" {
+  type        = map(string)
+  default     = {}
+  description = "Map of region name => KMS Key ARN to use for EBS default encryption (and optionally other resources). Safely attaches/creates KMS resources only when a key for the region exists."
 }
 
 variable "aws_resource_explorer_enabled" {
@@ -111,6 +88,29 @@ variable "aws_s3_public_access_block_config" {
   })
   default     = {}
   description = "S3 bucket-level Public Access Block config"
+}
+
+variable "aws_ssm_automation_log_group_name" {
+  type        = string
+  default     = "/aws/ssm/automation"
+  description = "CloudWatch Logs log group name for SSM Automation."
+}
+
+variable "aws_ssm_automation_logging_enabled" {
+  type        = bool
+  default     = true
+  description = "When true, enable SSM Automation customer-script logging to CloudWatch Logs in each baseline region."
+}
+
+variable "aws_ssm_documents_public_sharing_permission" {
+  type        = string
+  default     = "Disable"
+  description = "Configure the SSM documents public sharing policy, alternatives: `Enable`"
+
+  validation {
+    condition     = contains(["Disable", "Enable"], var.aws_ssm_documents_public_sharing_permission)
+    error_message = "Allowed values for aws_ssm_documents_public_sharing_permission are: \"Disable\", \"Enable\"."
+  }
 }
 
 variable "enable_additional_eu_regions" {
