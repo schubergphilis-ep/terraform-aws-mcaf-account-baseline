@@ -35,6 +35,32 @@ aws_config = {
 }
 ```
 
+## AWS Resource Explorer
+
+To make an account searchable through the organization-wide [AWS Resource Explorer](https://docs.aws.amazon.com/resource-explorer/latest/userguide/manage-service-multi-account.html) view created by the [mcaf-landing-zone module](https://github.com/schubergphilis/terraform-aws-mcaf-landing-zone), set `var.aws_resource_explorer`. This creates a Resource Explorer index in every baseline region and promotes the index in `aggregator_region` to the aggregator index of the account.
+
+The `aggregator_region` must be one of the baseline regions (the provider region or `extra_regions_to_baseline`) and must be the same across the organization, as the organization-wide view only returns resources from aggregator indexes in its own region.
+
+Example:
+
+```hcl
+aws_resource_explorer = {
+  aggregator_region = "eu-central-1"
+}
+```
+
+> [!NOTE]
+> If an account already has a Resource Explorer index in a region (for example, created through the console), import it first, otherwise the creation fails because only one index per region is allowed:
+>
+> ```hcl
+> import {
+>   to = module.account_baseline.aws_resourceexplorer2_index.default["eu-central-1"]
+>   id = "arn:aws:resource-explorer-2:eu-central-1:111111111111:index/<index-id>"
+> }
+> ```
+>
+> Changing the `aggregator_region` later demotes the current aggregator index; AWS only allows promoting a new aggregator index 24 hours after a demotion.
+
 ## MCAF Service Quotas Manager integration
 
 This module can deploy the IAM role required by the [MCAF Service Quotas Manager](https://github.com/schubergphilis/terraform-aws-mcaf-service-quotas-manager) module. The `assuming_principal_identifier` should be the `ServiceQuotasManagerExecutionRole`. This is by default `arn:aws:iam::<account_id>:role/ServiceQuotasManagerExecutionRole-<region_name>`.
@@ -71,6 +97,7 @@ This module can deploy the IAM role required by the [MCAF Service Quotas Manager
 | [aws_config_aggregate_authorization.default](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_aggregate_authorization) | resource |
 | [aws_ec2_image_block_public_access.default](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ec2_image_block_public_access) | resource |
 | [aws_iam_account_password_policy.default](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_account_password_policy) | resource |
+| [aws_resourceexplorer2_index.default](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/resourceexplorer2_index) | resource |
 | [aws_s3_account_public_access_block.default](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_account_public_access_block) | resource |
 | [aws_region.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/region) | data source |
 
@@ -85,6 +112,7 @@ This module can deploy the IAM role required by the [MCAF Service Quotas Manager
 | <a name="input_aws_ebs_snapshot_block_public_access_state"></a> [aws\_ebs\_snapshot\_block\_public\_access\_state](#input\_aws\_ebs\_snapshot\_block\_public\_access\_state) | Configure regionally the EBS snapshot public sharing policy, alternatives: `block-new-sharing` and `unblocked`. Not `null` but `unblocked` should be chosen to explicitly opt out of regional configuration when the setting is governed at the AWS Organization level via Declarative Policies. | `string` | `"block-all-sharing"` | no |
 | <a name="input_aws_ec2_image_block_public_access_state"></a> [aws\_ec2\_image\_block\_public\_access\_state](#input\_aws\_ec2\_image\_block\_public\_access\_state) | Configure blocking new AMIs from being publicly shared, alternatives: `unblocked` | `string` | `"block-new-sharing"` | no |
 | <a name="input_aws_kms_key_arns"></a> [aws\_kms\_key\_arns](#input\_aws\_kms\_key\_arns) | Map of region name => KMS Key ARN to use for EBS default encryption (and optionally other resources). Safely attaches/creates KMS resources only when a key for the region exists. | `map(string)` | `{}` | no |
+| <a name="input_aws_resource_explorer"></a> [aws\_resource\_explorer](#input\_aws\_resource\_explorer) | AWS Resource Explorer settings. When set, a Resource Explorer index is created in every baseline region, with the index in `aggregator_region` promoted to the aggregator index. The `aggregator_region` must be one of the baseline regions. | <pre>object({<br/>    aggregator_region = string<br/>  })</pre> | `null` | no |
 | <a name="input_aws_s3_public_access_block_config"></a> [aws\_s3\_public\_access\_block\_config](#input\_aws\_s3\_public\_access\_block\_config) | S3 bucket-level Public Access Block config | <pre>object({<br/>    enabled                 = optional(bool, true)<br/>    block_public_acls       = optional(bool, true)<br/>    block_public_policy     = optional(bool, true)<br/>    ignore_public_acls      = optional(bool, true)<br/>    restrict_public_buckets = optional(bool, true)<br/>  })</pre> | `{}` | no |
 | <a name="input_aws_ssm_automation_log_group_name"></a> [aws\_ssm\_automation\_log\_group\_name](#input\_aws\_ssm\_automation\_log\_group\_name) | CloudWatch Logs log group name for SSM Automation. | `string` | `"/aws/ssm/automation"` | no |
 | <a name="input_aws_ssm_automation_logging_enabled"></a> [aws\_ssm\_automation\_logging\_enabled](#input\_aws\_ssm\_automation\_logging\_enabled) | When true, enable SSM Automation customer-script logging to CloudWatch Logs in each baseline region. | `bool` | `true` | no |

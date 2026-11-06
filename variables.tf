@@ -95,6 +95,14 @@ variable "aws_ssm_documents_public_sharing_permission" {
   }
 }
 
+variable "aws_resource_explorer" {
+  type = object({
+    aggregator_region = string
+  })
+  default     = null
+  description = "AWS Resource Explorer settings. When set, a Resource Explorer index is created in every baseline region, with the index in `aggregator_region` promoted to the aggregator index. The `aggregator_region` must be one of the baseline regions."
+}
+
 variable "aws_s3_public_access_block_config" {
   type = object({
     enabled                 = optional(bool, true)
