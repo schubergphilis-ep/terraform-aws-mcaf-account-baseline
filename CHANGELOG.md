@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [8.1.0](https://github.com/schubergphilis-ep/terraform-aws-mcaf-account-baseline/compare/v8.0.0...v8.1.0) (2026-11-09)
+
+
+### 🚀 Features
+
+* add optional AWS Resource Explorer indexes ([#6](https://github.com/schubergphilis-ep/terraform-aws-mcaf-account-baseline/issues/6)) ([525a3be](https://github.com/schubergphilis-ep/terraform-aws-mcaf-account-baseline/commit/525a3be4b2f9bed85955b87db8598da61425079e))
+
 ## [8.0.0](https://github.com/schubergphilis-ep/terraform-aws-mcaf-account-baseline/compare/v7.1.2...v8.0.0) (2026-08-25)
 
 
