@@ -44,6 +44,17 @@ resource "aws_s3_account_public_access_block" "default" {
   restrict_public_buckets = var.aws_s3_public_access_block_config.restrict_public_buckets
 }
 
+# AWS Resource Explorer: a local index in every baseline region, promoted to the aggregator index
+# in the provider region to support (multi-account) cross-region search.
+# https://docs.aws.amazon.com/resource-explorer/latest/userguide/manage-service-multi-account.html
+resource "aws_resourceexplorer2_index" "default" {
+  for_each = var.aws_resource_explorer_enabled ? toset(local.regions_to_baseline) : toset([])
+
+  region = each.value
+  type   = each.value == data.aws_region.current.region ? "AGGREGATOR" : "LOCAL"
+  tags   = var.tags
+}
+
 module "regional_resources_baseline" {
   for_each = toset(local.regions_to_baseline)
 
